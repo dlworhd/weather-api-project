@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 import zerobase.weather.WeatherApplication;
 import zerobase.weather.domain.DateWeather;
 import zerobase.weather.domain.Diary;
-import zerobase.weather.error.InvalidDate;
 import zerobase.weather.repository.DateWeatherRepository;
 import zerobase.weather.repository.DiaryRepository;
 
@@ -125,7 +124,10 @@ public class DiaryService {
 
     }
 
-    private Map<String, Object> pareseWeather(String jsonString){
+
+
+
+    private Map<String, Object> parseWeather(String jsonString){
         JSONParser jsonParser = new JSONParser();
         JSONObject jsonObject;
 
@@ -158,7 +160,7 @@ public class DiaryService {
         String weatherData = getWeatherString();
 
         //받아온 날씨 파싱하기
-        Map<String, Object> parsedWeather = pareseWeather(weatherData);
+        Map<String, Object> parsedWeather = parseWeather(weatherData);
 
         DateWeather dateWeather = new DateWeather();
         dateWeather.setDate(LocalDate.now());
